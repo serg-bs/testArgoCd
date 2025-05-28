@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test
+spec:
+  destination:
+    name: ostadev
+    namespace: test
+  source:
+    repoURL: https://github.com/serg-bs/testArgoCd
+    path: .ci/charts-deploy
+    targetRevision: master
+  project: osta
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+operation:
+  sync:
+    syncStrategy:
+      apply:
+        force: true

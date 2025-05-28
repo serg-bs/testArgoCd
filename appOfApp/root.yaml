@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-app
+spec:
+  destination:
+    name: in-cluster
+    namespace: default
+  source:
+    repoURL: https://github.com/serg-bs/testArgoCd
+    targetRevision: master
+    path: .ci/charts
+    plugin:
+      name: argocd-vault-plugin-helm-no-discover
+      parameters:
+        - name: values-files
+          array:
+            - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
+    syncOptions:
+      - CreateNamespace=true
+operation:
+  sync:
+    syncStrategy:
+      apply:
+        force: true
