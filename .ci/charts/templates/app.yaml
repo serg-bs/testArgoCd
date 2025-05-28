@@ -4,7 +4,7 @@ metadata:
   name: test
 spec:
   destination:
-    name: ostadev
+    name: in-cluster
     namespace: test
   source:
     repoURL: https://github.com/serg-bs/testArgoCd

@@ -10,12 +10,6 @@ spec:
     repoURL: https://github.com/serg-bs/testArgoCd
     targetRevision: master
     path: .ci/charts
-    plugin:
-      name: argocd-vault-plugin-helm-no-discover
-      parameters:
-        - name: values-files
-          array:
-            - values.yaml
   project: default
   syncPolicy:
     automated:
